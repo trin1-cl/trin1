@@ -8,3 +8,10 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
 .footer-top>div>a.instagram-link{display:flex;align-items:center;gap:9px;min-height:44px;cursor:pointer;width:fit-content}.instagram-link svg{width:17px;height:17px}.instagram-link:hover{color:var(--rose)}
+
+/* Catálogo infantil: cinco categorías en escritorio y dos en celular. */
+.products{grid-template-columns:repeat(5,minmax(0,1fr))}.product-photo img{height:245px}.product-info{padding:18px}.product-info p{min-height:62px}.product[data-category="ninos"] img{object-position:38% center}.hero-photo{object-position:44% center}
+@media(min-width:801px){nav{gap:22px;font-size:13px}}
+@media(max-width:1100px) and (min-width:801px){nav{gap:14px;font-size:12px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product-photo img{height:280px}}
+@media(max-width:560px){.product-photo img{height:210px}.product-info{padding:14px 12px}.filters button{padding-inline:8px}.hero-photo{object-position:42% center}.hero-bottom{font-size:7px}}
