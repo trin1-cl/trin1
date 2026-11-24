@@ -15,3 +15,5 @@
 @media(max-width:1100px) and (min-width:801px){nav{gap:14px;font-size:12px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:800px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product-photo img{height:280px}}
 @media(max-width:560px){.product-photo img{height:210px}.product-info{padding:14px 12px}.filters button{padding-inline:8px}.hero-photo{object-position:42% center}.hero-bottom{font-size:7px}}
+
+.hero-photo{object-position:50% 57%}.product[data-category="ninas"] img{object-position:50% 56%}.product[data-category="ninos"] img{object-position:50% 40%}.story-photo img{object-position:42% center}

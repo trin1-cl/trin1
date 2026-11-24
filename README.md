@@ -1,5 +1,5 @@
 # Trin1
-Landing page infantil en español para bebés, niñas y niños. HTML, CSS y JavaScript, sin dependencias de compilación.
+Landing page infantil en español para bebés, niñas y niños de 0 a 5 años. HTML, CSS y JavaScript, sin dependencias de compilación.
 
 Para verla: `python3 -m http.server 5173 --directory dist` y abrir http://localhost:5173.
 
