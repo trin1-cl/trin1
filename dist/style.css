@@ -17,3 +17,6 @@
 @media(max-width:560px){.product-photo img{height:210px}.product-info{padding:14px 12px}.filters button{padding-inline:8px}.hero-photo{object-position:42% center}.hero-bottom{font-size:7px}}
 
 .hero-photo{object-position:50% 62%}.product[data-category="ninas"] img{object-position:50% 56%}.product[data-category="ninos"] img{object-position:50% 40%}.story-photo img{object-position:42% center}
+
+.hero h1{font-size:clamp(40px,4vw,56px);line-height:1.1}.hero-photo{object-position:50% 50%}
+@media(max-width:560px){.hero h1{font-size:37px}.hero-photo{height:350px;object-position:50% 48%}}
