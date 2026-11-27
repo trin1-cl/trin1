@@ -1,6 +1,22 @@
 # Trin1
 Landing page infantil en español para bebés, niñas y niños de 0 a 5 años. HTML, CSS y JavaScript, sin dependencias de compilación.
 
+## Portada temporal en trin1.cl
+
+La portada de próxima apertura está en `coming-soon/`, separada de la tienda de `dist/`. Publicada el 27 de noviembre de 2026 en el proyecto Vercel `trisi-fit/trin1`. No recibe pedidos ni recopila datos.
+
+Para revisarla: `python3 -m http.server 5173 --directory coming-soon`.
+
+Repositorio privado: `https://github.com/importacionesaguileraspa/trin1`. La rama de producción es `main`. Vercel usa `coming-soon/` como directorio raíz para publicar la portada temporal; `dist/` conserva el trabajo de la tienda.
+
+Para actualizarla, editar los archivos de `coming-soon/`, crear un commit y hacer push a `main`. Vercel publica los cambios automáticamente. Las ramas adicionales permiten trabajar sin cambiar la portada de producción.
+
+Para publicar manualmente, ejecutar desde `coming-soon/`: `npx vercel project inspect --non-interactive --scope trisi-fit` y, tras comprobar el proyecto, `npx vercel deploy --prod --scope trisi-fit`. No subir archivos `.env` ni `.vercel` a GitHub.
+
+El dominio permanece registrado en NIC Chile, delegado a `austin.ns.cloudflare.com` y `melissa.ns.cloudflare.com`. Cloudflare administra DNS; Vercel aloja la página. Registros configurados según lo solicitado por Vercel: dos A para `@` (`216.198.79.1`, `64.29.17.1`) y CNAME `www` hacia `55be56a8b513ea34.vercel-dns-017.com`, todos en modo Solo DNS. Consultar nuevamente Vercel antes de cambiar esos destinos.
+
+La tienda original y sus archivos siguen en `dist/`; no se publicaron como parte de la portada temporal.
+
 Para verla: `python3 -m http.server 5173 --directory dist` y abrir http://localhost:5173.
 
 Incluye cinco categorías (Bebés, Niñas, Niños, Juguetes y Accesorios), filtros, búsqueda, detalles, favoritos locales, navegación móvil y preguntas frecuentes. Las imágenes y categorías son de muestra. No procesa compras, datos de clientes ni pagos.
