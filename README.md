@@ -9,7 +9,7 @@ Para revisarla: `python3 -m http.server 5173 --directory coming-soon`.
 
 Repositorio privado: `https://github.com/trin1-cl/trin1`. La rama de producción es `main`. Vercel usa `coming-soon/` como directorio raíz para publicar la portada temporal; `dist/` conserva el trabajo de la tienda.
 
-Para actualizarla, editar los archivos de `coming-soon/`, crear un commit y hacer push a `main`. La publicación automática queda pendiente de autorizar la aplicación Vercel en la organización `trin1-cl` y conectar el repositorio al proyecto. Una vez conectados, Vercel publicará los cambios automáticamente. Las ramas adicionales permiten trabajar sin cambiar la portada de producción.
+Para actualizarla, editar los archivos de `coming-soon/`, crear un commit y hacer push a `main`. La aplicación Vercel está autorizada únicamente para `trin1-cl/trin1`. La conexión automática está bloqueada porque Vercel Hobby no admite repositorios privados de organizaciones. Para activarla hay que usar Vercel Pro o cambiar explícitamente la visibilidad del repositorio a público. Mientras tanto, la portada publicada continúa funcionando y los cambios en GitHub no se publican automáticamente. Las ramas adicionales permiten trabajar sin cambiar la portada de producción.
 
 Para publicar manualmente, ejecutar desde `coming-soon/`: `npx vercel project inspect --non-interactive --scope trisi-fit` y, tras comprobar el proyecto, `npx vercel deploy --prod --scope trisi-fit`. No subir archivos `.env` ni `.vercel` a GitHub.
 
