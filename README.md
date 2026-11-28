@@ -29,6 +29,6 @@ Antes del lanzamiento comercial: confirmar las fichas con el proveedor, las vari
 
 El botón flotante está montado. Completar `WHATSAPP_NUMBER` en `dist/whatsapp.js` con el código de país y número, sin `+` ni espacios (Chile: `56` seguido de los 9 dígitos). El mensaje inicial se edita en `WHATSAPP_MESSAGE`. Después, volver a publicar el sitio. Sin número configurado, el botón conserva su diseño pero no abre ningún chat; no muestra anuncios de “próximamente”.
 
-El enlace Instagram del pie se configura con `INSTAGRAM_URL` en el mismo archivo. Usar la URL completa del perfil. Sin cuenta configurada, se muestra el enlace pero no navega a un perfil ajeno.
+El enlace Instagram del pie está configurado con `INSTAGRAM_URL` en el mismo archivo y abre el perfil oficial `https://www.instagram.com/trin1.cl/`.
 
 La portada utiliza una imagen generada con la herramienta integrada de imágenes, en `dist/assets/two-babies.jpg`. Prompt: fotografía editorial realista de dos bebés (niño y niña), conjuntos tejidos beige y rosado, manta marfil, luz natural y fondo neutro cálido, encuadre vertical con ambos cuerpos, sin texto ni marcas.

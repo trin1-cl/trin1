@@ -23,7 +23,7 @@ Se conservaron el logo, la paleta crema y rosa, Outfit/DM Sans y la portada con 
 
 La voz es breve y descriptiva: nombre reconocible, detalles observables y uso general. No se prometen beneficios terapéuticos ni certificaciones. Las descripciones se redactaron según las fotos y los nombres recibidos, sin contrastar fichas técnicas de proveedores. Las variantes, el stock y las especificaciones deben confirmarse antes de vender.
 
-La imagen de portada es una ilustración fotográfica generada y la foto de “Nuestro mundo” es referencial (Pexels); los créditos se actualizaron para distinguirlas de las imágenes del catálogo. WhatsApp e Instagram conservan la configuración anterior, todavía sin destinatario o perfil.
+La imagen de portada es una ilustración fotográfica generada y la foto de “Nuestro mundo” es referencial (Pexels); los créditos se actualizaron para distinguirlas de las imágenes del catálogo. WhatsApp conserva la configuración anterior, todavía sin destinatario. Instagram está configurado para abrir el perfil oficial `https://www.instagram.com/trin1.cl/`.
 
 El verificador de diseño aplica reglas de landing pages a toda la tienda: exige secciones de una o dos pantallas, imágenes en las preguntas frecuentes y variaciones de estructura entre tarjetas. Esas reglas marcan la cuadrícula uniforme de 28 artículos, su longitud y la estructura preexistente. El catálogo pasó sus pruebas funcionales; no se presenta la página general como aprobada por ese verificador. No se añadieron exenciones ni se ocultó contenido para alterar el resultado. El informe completo de la última ejecución se incorpora debajo.
 

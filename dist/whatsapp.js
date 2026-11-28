@@ -2,8 +2,8 @@
 // Para un celular chileno, usar 56 seguido de los 9 dígitos del celular.
 const WHATSAPP_NUMBER = '';
 const WHATSAPP_MESSAGE = '¡Hola, Trin1! Me gustaría recibir más información sobre sus productos.';
-// Completar con la URL del perfil cuando se cree la cuenta.
-const INSTAGRAM_URL = '';
+// Perfil oficial de Instagram de Trin1.
+const INSTAGRAM_URL = 'https://www.instagram.com/trin1.cl/';
 
 function whatsappUrl(number, message) {
   if (!/^[1-9]\d{6,14}$/.test(number)) return null;
