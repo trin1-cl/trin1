@@ -1,0 +1,88 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Pruebas del catálogo Trin1</title>
+<style>body{font:16px/1.6 system-ui;margin:32px;color:#26392d}pre{white-space:pre-wrap}iframe{border:1px solid #ddd;height:844px;width:390px}#results{min-height:200px}</style>
+<h1>Pruebas del catálogo Trin1</h1><pre id="results">Ejecutando…</pre><iframe title="Catálogo en prueba" src="../dist/index.html"></iframe>
+<script>
+const frame = document.querySelector('iframe');
+const output = document.querySelector('#results');
+const results = [];
+const tick = () => new Promise(resolve => setTimeout(resolve, 60));
+const assert = (value, message) => { if (!value) throw new Error(message); };
+let doc, win;
+const click = selector => { const element = doc.querySelector(selector); assert(element, `No existe ${selector}`); element.click(); };
+const count = () => doc.querySelectorAll('#products .product').length;
+const query = value => { doc.querySelector('#search').value = value; doc.querySelector('#search').dispatchEvent(new win.Event('input')); };
+const close = async () => { doc.querySelector('dialog').close(); await tick(); };
+const check = async (name, run) => { await run(); results.push(`✓ ${name}`); output.textContent = results.join('\n'); };
+frame.addEventListener('load', async function run() {
+ frame.removeEventListener('load', run);
+ try {
+  win = frame.contentWindow; doc = frame.contentDocument;
+  const errors = [];
+  win.addEventListener('error', event => errors.push(event.message));
+  win.localStorage.removeItem('trin1-product-favorites');
+  await check('28 productos y seis categorías, sin precios', () => {
+   assert(count() === 28, 'Recuento inicial incorrecto');
+   assert(doc.querySelectorAll('.filters button').length === 7, 'Faltan categorías');
+   assert(!/\$\s*\d/.test(doc.querySelector('#products').textContent), 'Se muestra un precio');
+  });
+  await check('Cada filtro muestra sus productos y actualiza su estado', () => {
+   const expected = {mordedores:8, juguetes:7, alimentacion:4, bano:3, cuidado:2, estimulacion:4};
+   for (const [id, total] of Object.entries(expected)) {
+    click(`.filters [data-filter="${id}"]`);
+    assert(count() === total, `${id}: ${count()} en vez de ${total}`);
+    assert(doc.querySelector(`.filters [data-filter="${id}"]`).getAttribute('aria-pressed') === 'true', 'Filtro inactivo');
+   }
+  });
+  await check('Búsqueda sin tildes, vacío y restablecimiento', () => {
+   click('.filters [data-filter="todo"]'); query('PLATANO'); assert(count() === 1, 'Búsqueda con tilde');
+   query('producto inexistente'); assert(count() === 0 && !doc.querySelector('#empty').hidden, 'Estado vacío incorrecto');
+   click('#reset-catalog'); assert(count() === 28 && doc.querySelector('#search').value === '', 'Reset incorrecto');
+  });
+  await check('Detalle, galería y favoritos desde la ficha', async () => {
+   click('[data-detail="cangrejo-recargable"]');
+   assert(doc.querySelector('dialog').open, 'No abre el detalle');
+   const initial = doc.querySelector('#detail-photo').src;
+   click('[data-photo="1"]');
+   assert(doc.querySelector('#detail-photo').src !== initial, 'No cambia la foto');
+   assert(doc.querySelector('[data-photo="1"]').getAttribute('aria-pressed') === 'true', 'Miniatura sin estado');
+   click('#dialog-content [data-save]'); assert(doc.querySelector('#saved-count').textContent === '1', 'No guarda');
+   assert(JSON.parse(win.localStorage.getItem('trin1-product-favorites'))[0] === 'cangrejo-recargable', 'No persiste');
+   await close(); click('#saved-toggle');
+   assert(doc.querySelector('.saved-product').textContent.includes('Cangrejo'), 'Favorito ausente');
+   click('.saved-product'); assert(doc.querySelector('#dialog-title').textContent === 'Cangrejo recargable', 'No abre favorito');
+   await close(); click('#saved-toggle'); click('[data-remove]');
+   assert(doc.querySelector('#saved-count').textContent === '0', 'No elimina favorito');
+   assert(doc.querySelector('#dialog-content').textContent.includes('Aún no tienes favoritos'), 'No muestra vacío');
+   await close();
+  });
+  await check('Menú móvil y navegación de categoría', () => {
+   click('#menu-toggle'); assert(doc.querySelector('nav').classList.contains('open'), 'No abre menú');
+   query('inexistente'); click('nav [data-filter="alimentacion"]');
+   assert(count() === 4, 'La navegación no limpia la búsqueda');
+   assert(doc.querySelector('#menu-toggle').getAttribute('aria-expanded') === 'false', 'No cierra menú');
+   click('.filters [data-filter="todo"]');
+  });
+  await check('Todas las fotos del catálogo se pueden cargar (41)', async () => {
+   const photos = win.eval('products.flatMap(product => product.images)');
+   await Promise.all(photos.map(photo => new Promise((resolve, reject) => {
+    const image = new win.Image(); image.onload = () => image.naturalWidth ? resolve() : reject(new Error(photo.src));
+    image.onerror = () => reject(new Error(`Foto rota: ${photo.src}`)); image.src = `../dist/assets/products/${photo.src}`;
+   })));
+  });
+  await check('Sin desbordamiento a 320, 390, 768, 1024 y 1440 px', async () => {
+   for (const width of [320,390,768,1024,1440]) {
+    frame.style.width = `${width}px`; await tick();
+    assert(doc.documentElement.scrollWidth <= width, `Desbordamiento a ${width}`);
+    click('[data-detail="set-silicona"]'); await tick();
+    assert(doc.querySelector('dialog').getBoundingClientRect().right <= width, `Detalle fuera de pantalla a ${width}`);
+    await close();
+   }
+   frame.style.width = '390px';
+   doc.querySelector('#coleccion').scrollIntoView({behavior:'instant'});
+  });
+  assert(errors.length === 0, errors.join('\n'));
+  output.textContent = `PASS · ${results.length} comprobaciones\n${results.join('\n')}`;
+  document.title = 'PASS · Catálogo Trin1';
+ } catch (error) { output.textContent = `FAIL · ${error.message}\n${results.join('\n')}`; document.title = 'FAIL · Catálogo Trin1'; }
+});
+</script></html>

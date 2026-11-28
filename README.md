@@ -1,27 +1,29 @@
 # Trin1
 Landing page infantil en español para bebés, niñas y niños de 0 a 5 años. HTML, CSS y JavaScript, sin dependencias de compilación.
 
-## Portada temporal en trin1.cl
+## Catálogo en trin1.cl
 
-La portada de próxima apertura está en `coming-soon/`, separada de la tienda de `dist/`. Publicada el 27 de noviembre de 2026 en el proyecto Vercel `trisi-fit/trin1`. No recibe pedidos ni recopila datos.
+El catálogo de `dist/` se publica en el proyecto Vercel `trisi-fit/trin1`. La portada temporal anterior se conserva en `coming-soon/` como archivo. El catálogo permite explorar productos y guardar favoritos; no recibe pedidos ni pagos y todavía no muestra precios.
 
-Para revisarla: `python3 -m http.server 5173 --directory coming-soon`.
+Repositorio público: `https://github.com/trin1-cl/trin1`. La rama de producción es `main`. Vercel usa `dist/` como directorio raíz y publica automáticamente los cambios enviados a `main`.
 
-Repositorio público: `https://github.com/trin1-cl/trin1`. La rama de producción es `main`. Vercel usa `coming-soon/` como directorio raíz para publicar la portada temporal; `dist/` conserva el trabajo de la tienda.
+Para actualizar el catálogo, editar `dist/`, comprobar `node --test tests/catalog.test.cjs`, crear un commit y hacer push a `main`. No subir archivos `.env` ni `.vercel` a GitHub.
 
-Para actualizarla, editar los archivos de `coming-soon/`, crear un commit y hacer push a `main`. Vercel está conectado a `trin1-cl/trin1` y publica automáticamente los cambios de `main`. La aplicación Vercel tiene acceso únicamente a este repositorio. Las ramas adicionales permiten trabajar sin cambiar la portada de producción.
-
-Para publicar manualmente, ejecutar desde `coming-soon/`: `npx vercel project inspect --non-interactive --scope trisi-fit` y, tras comprobar el proyecto, `npx vercel deploy --prod --scope trisi-fit`. No subir archivos `.env` ni `.vercel` a GitHub.
+Para inspeccionar o publicar desde la CLI sin crear otra vinculación, usar el proyecto y equipo explícitos: `npx vercel project inspect trin1 --scope trisi-fit --non-interactive` y `npx vercel deploy --project trin1 --prod --scope trisi-fit`. Los dominios `trin1.cl` y `www.trin1.cl` pertenecen a este proyecto.
 
 El dominio permanece registrado en NIC Chile, delegado a `austin.ns.cloudflare.com` y `melissa.ns.cloudflare.com`. Cloudflare administra DNS; Vercel aloja la página. Registros configurados según lo solicitado por Vercel: dos A para `@` (`216.198.79.1`, `64.29.17.1`) y CNAME `www` hacia `55be56a8b513ea34.vercel-dns-017.com`, todos en modo Solo DNS. Consultar nuevamente Vercel antes de cambiar esos destinos.
 
-La tienda original y sus archivos siguen en `dist/`; no se publicaron como parte de la portada temporal.
+La portada temporal archivada puede revisarse con `python3 -m http.server 5174 --directory coming-soon`.
 
 Para verla: `python3 -m http.server 5173 --directory dist` y abrir http://localhost:5173.
 
-Incluye cinco categorías (Bebés, Niñas, Niños, Juguetes y Accesorios), filtros, búsqueda, detalles, favoritos locales, navegación móvil y preguntas frecuentes. Las imágenes y categorías son de muestra. No procesa compras, datos de clientes ni pagos.
+El catálogo incluye 28 productos y 41 fotografías proporcionadas por Trin1, organizados en seis categorías: Mordedores, Juguetes sensoriales, Alimentación, Baño, Cuidado y accesorios, y Estimulación visual. Las vistas del mismo producto se agrupan en una galería. Incluye búsqueda sin tildes, filtros, detalles, favoritos de productos guardados en el navegador y navegación móvil. No muestra precios ni procesa pedidos o pagos.
 
-Antes del lanzamiento comercial: incorporar productos, imágenes propias, precios, tallas, contacto y políticas reales; conectar pedidos y pagos si se desea una tienda.
+Los datos y descripciones están en `dist/catalog.js`; las fotos están en `dist/assets/products/`. Las edades solo se indican en las tarjetas cuya presentación las identifica. No se han añadido certificaciones, medidas, stock ni propiedades sanitarias sin confirmar.
+
+Comprobaciones del catálogo: `node --test tests/catalog.test.cjs`. Para las pruebas de interacción, servir la raíz del repositorio (`python3 -m http.server 5174`) y abrir `http://localhost:5174/tests/browser.html`; el resultado debe indicar PASS.
+
+Antes del lanzamiento comercial: confirmar las fichas con el proveedor, las variantes y existencias, los precios, el contacto y las políticas; conectar pedidos y pagos si se desea una tienda. El catálogo se publica desde `dist/`; la portada temporal de `coming-soon/` se conserva como archivo.
 
 ## WhatsApp
 
